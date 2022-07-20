@@ -1,25 +1,18 @@
 function solution(s) {
-  var answer = 0;
-  let flag = 1;
-  while (s.length && flag) {
-    let x = "";
-    const tmp = [];
-    flag = 0;
-    for (const y of s) {
-      if (y === x) {
-        flag = 1;
-        x = "";
-      }
-      if (y !== x) {
-        if (x) tmp.push(x);
-        x = y;
-      }
+  var answer = -1;
+  if (s.length % 2 !== 0) return 0;
+  const stk = [];
+  for (let i = 0; i < s.length; i++) {
+    let t = s[i];
+    if (stk.length && stk[stk.length - 1] === t) {
+      stk.pop();
+    } else {
+      stk.push(t);
     }
-    if (flag) answer = 1;
-    s = tmp;
   }
+  answer = stk.length ? 0 : 1;
   return answer;
 }
 
-const s = "cdcd";
+const s = "cdcd	";
 console.log(solution(s));
