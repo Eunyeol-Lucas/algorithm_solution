@@ -10,7 +10,6 @@ function solution(maps) {
     [-1, 0],
   ];
   q.push([0, 0]);
-  vst[0][0] = 1;
   while (q.length) {
     const size = q.length;
     for (let i = 0; i < size; i++) {
