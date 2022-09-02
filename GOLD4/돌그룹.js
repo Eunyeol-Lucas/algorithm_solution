@@ -1,5 +1,5 @@
 const filePath = process.platform === "linux" ? "/dev/stdin" : "input.txt";
-let input = require("fs").readFileSync(filePath).toString().split(" ");
+let input = require("fs").readFileSync(filePath).toString().trim().split(" ");
 const [A, B, C] = input.map(Number).sort((a, b) => a - b);
 console.log(solution(A, B, C));
 
