@@ -1,5 +1,3 @@
-const { start } = require("repl");
-
 const filePath = process.platform === "linux" ? "/dev/stdin" : "input.txt";
 const input = require("fs")
   .readFileSync(filePath)
