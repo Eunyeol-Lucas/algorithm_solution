@@ -1,3 +1,9 @@
+const filePath = process.platform === "linux" ? "/dev/stdin" : "input.txt";
+let input = require("fs").readFileSync(filePath).toString().trim().split("\n");
+const [N, K] = input.shift().split(" ").map(Number);
+const board = input.splice(0, N).map((i) => i.split(" ").map(Number));
+const bags = input.map(Number);
+
 class MaxHeap {
   constructor() {
     this.heap = [];
@@ -66,3 +72,26 @@ class MaxHeap {
     return value;
   }
 }
+
+function solution(N, K, board, bags) {
+  let answer = 0;
+  let newBoard = board.sort((a, b) => a[0] - b[0]);
+  const newBags = bags.sort((a, b) => a - b);
+  let q = new MaxHeap();
+
+  let j = 0;
+  for (let i = 0; i < K; i++) {
+    while (j < N && newBoard[j][0] <= newBags[i]) {
+      q.push(newBoard[j][1]);
+      j++;
+    }
+
+    if (q.size()) {
+      answer += q.pop();
+    }
+  }
+
+  return answer;
+}
+
+console.log(solution(N, K, board, bags));
