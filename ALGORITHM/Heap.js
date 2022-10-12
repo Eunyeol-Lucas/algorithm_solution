@@ -66,3 +66,21 @@ class MaxHeap {
     return value;
   }
 }
+
+const heap = new MaxHeap();
+
+heap.push(10);
+heap.push(8);
+heap.pop();
+heap.push(1);
+heap.push(6);
+heap.push(3);
+heap.push(50);
+heap.pop();
+heap.push(1);
+heap.push(7);
+heap.push(10);
+heap.pop();
+heap.push(1);
+
+console.log(heap.heap);
