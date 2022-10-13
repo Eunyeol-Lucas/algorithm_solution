@@ -119,8 +119,7 @@ function solution(operations) {
   }
 
   const result = [minMaxHeap.popMax(), minMaxHeap.popMin()];
-  if (result[0] === null) return [0, 0];
-  if (result[1] === null) return [result[0], result[0]];
+  if (result[0] === null || result[1] === null) return [0, 0];
   return result;
 }
 
