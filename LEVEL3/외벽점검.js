@@ -35,7 +35,30 @@ function solution(n, weak, dist) {
   return answer;
 }
 
+function solutions(n, weak, dist) {
+  const weakLen = weak.length;
+  const flattenWeak = [...weak, ...weak.map((w) => w + n)];
+  const distLen = dist.length;
+
+  for (let i = 0; i < distLen; i++) {
+    const permutation = getPermutation(dist, i);
+    for (const permu of permutation) {
+      for (let j = 0; j < weakLen; j++) {
+        let line = flattenWeak.slice(j, weakLen + j);
+        for (const p of permu) {
+          const coverage = line[0] + p;
+          line = line.filter((l) => l > coverage);
+          if (!line.length) return i;
+        }
+      }
+    }
+  }
+  return -1;
+}
+
 const n = 12,
   weak = [1, 5, 6, 10],
   dist = [1, 2, 3, 4];
+
 console.log(solution(n, weak, dist));
+console.log(solutions(n, weak, dist));
