@@ -1,8 +1,9 @@
-7
-abba
-summuus
-xabba
-xabbay
-comcom
-comwwmoc
-comwwtmoc
+2
+4
+5 5
+5 -5
+-5 5
+-5 -5
+2
+-100000 -100000
+100000 100000
