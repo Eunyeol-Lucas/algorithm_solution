@@ -6,7 +6,7 @@ class Queue {
   }
 
   size() {
-    if (this.storage[rear] === undefined) return 0;
+    if (this.storage[this.rear] === undefined) return 0;
     else {
       return this.rear - this.front + 1;
     }
@@ -14,11 +14,7 @@ class Queue {
 
   add(value) {
     // 큐에 데이터가 아무것도 없는경우
-    if (this.size() === 0) this.storage["0"] = value;
-      // 0번 위치에 값을 넣고 포인터는 건드리지 않는다.
-      // 이떄 ['0']으로 키를 설정한 이유는
-      // 자바스크립트 객체 Object는 키 값으로 오로지
-      // 문자열과 Symbol만 허용하기 때문
+    if (this.size() === 0) this.storage[this.rear] = value;
     else {
       // 그외 경우에는 간단하게
       // rear 위치를 1만큼 늘리고 해당 위치에 값 삽입
