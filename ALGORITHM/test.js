@@ -1,3 +1,35 @@
+class Queue {
+  constructor() {
+    this.storage = {};
+    this.front = 0;
+    this.rear = 0;
+    this.size = 0;
+  }
+
+  add(value) {
+    this.storage[this.rear] = value;
+    this.rear++;
+    this.size++;
+  }
+
+  popleft() {
+    let tmp;
+    if (this.front === this.rear) {
+      tmp = this.storage[this.front];
+      delete this.storage[this.front];
+      this.front = 0;
+      this.rear = 0;
+      this.size--;
+    } else {
+      tmp = this.storage[this.front];
+      delete this.storage[this.front];
+      this.front++;
+      this.size--;
+    }
+    return tmp;
+  }
+}
+
 const Deque = (() => {
   class Deque {
     constructor() {
@@ -75,6 +107,27 @@ const Deque = (() => {
 
 const loop = 100000;
 
+function arrayTest() {
+  const q = [];
+  for (let i = 0; i <= loop; i++) {
+    q.push(i);
+  }
+  for (let i = 0; i <= loop; i++) {
+    q.shift();
+  }
+}
+
+function queueTest() {
+  const q = new Queue();
+
+  for (let i = 0; i <= loop; i++) {
+    q.add(i);
+  }
+  for (let i = 0; i <= loop; i++) {
+    q.popleft();
+  }
+}
+
 function dequeTest() {
   const deque = new Deque();
   for (let i = 0; i <= loop; i++) {
@@ -86,6 +139,42 @@ function dequeTest() {
   }
 }
 
+function arrayUnshiftTest() {
+  const q = [];
+  for (let i = 0; i <= loop; i++) {
+    q.unshift(i);
+  }
+  for (let i = 0; i <= loop; i++) {
+    q.shift();
+  }
+}
+
+function dequeUnshiftTest() {
+  const deque = new Deque();
+  for (let i = 0; i <= loop; i++) {
+    deque.put_front(i);
+  }
+  for (let i = 0; i <= loop; i++) {
+    deque.get_front(i);
+  }
+}
+
 console.time("Array Time Measure");
-dequeTest();
+arrayTest();
 console.timeEnd("Array Time Measure");
+
+console.time("Queue Time Measure");
+queueTest();
+console.timeEnd("Queue Time Measure");
+
+// console.time("Deque Time Measure");
+// dequeTest();
+// console.timeEnd("Deque Time Measure");
+
+console.time("Array Unshift Time Measure");
+arrayUnshiftTest();
+console.timeEnd("Array Unshift Time Measure");
+
+console.time("Deque Unshift Time Measure");
+dequeUnshiftTest();
+console.timeEnd("Deque Unshift Time Measure");
