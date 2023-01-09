@@ -13,19 +13,17 @@ class Queue {
   }
 
   popleft() {
-    let tmp;
+    const tmp = this.storage[this.front];
+    if (!tmp) return false;
+    delete this.storage[this.front];
     if (this.front === this.rear) {
-      tmp = this.storage[this.front];
-      delete this.storage[this.front];
       this.front = 0;
       this.rear = 0;
-      this.size--;
     } else {
-      tmp = this.storage[this.front];
-      delete this.storage[this.front];
+      tmp = this;
       this.front++;
-      this.size--;
     }
+    this.size--;
     return tmp;
   }
 }
