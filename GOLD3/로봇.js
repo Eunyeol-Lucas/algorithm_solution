@@ -16,37 +16,26 @@ class Queue {
     this.storage = {};
     this.front = 0;
     this.rear = 0;
-  }
-
-  size() {
-    if (this.storage[this.rear] === undefined) return 0;
-    else {
-      return this.rear - this.front + 1;
-    }
+    this.size = 0;
   }
 
   add(value) {
-    if (this.size() === 0) {
-      this.storage["0"] = value;
-    } else {
-      this.rear++;
-      this.storage[this.rear] = value;
-    }
+    this.storage[this.rear] = value;
+    this.rear++;
+    this.size++;
   }
 
   popleft() {
-    let tmp;
+    const tmp = this.storage[this.front];
+    if (!tmp) return false;
+    delete this.storage[this.front];
     if (this.front === this.rear) {
-      tmp = this.storage[this.front];
-      delete this.storage[this.front];
       this.front = 0;
       this.rear = 0;
     } else {
-      tmp = this.storage[this.front];
-      delete this.storage[this.front];
       this.front++;
     }
-
+    this.size--;
     return tmp;
   }
 }
@@ -78,7 +67,7 @@ function solution(M, N, board, start, end) {
   let q = new Queue();
   q.add([sx - 1, sy - 1, sd - 1, 0]);
 
-  while (q.size()) {
+  while (q.size) {
     const [x, y, d, cnt] = q.popleft();
     if (x === ex - 1 && y === ey - 1 && d === ed - 1) return cnt;
 
