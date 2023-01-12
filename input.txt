@@ -1,17 +1,16 @@
-5 11
+5 10
 baekjoononlinejudge
 startlink
 codeplus
 sundaycoding
 codingsh
 baekjoon
-codeplus
-codeminus
-startlink
-starlink
-sundaycoding
-codingsh
-codinghs
-sondaycoding
-startrink
-icerink
+star
+start
+code
+sunday
+coding
+cod
+online
+judge
+plus
