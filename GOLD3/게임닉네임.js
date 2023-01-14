@@ -5,6 +5,7 @@ class Node {
   constructor(value = "") {
     this.value = value;
     this.end = false;
+    this.cnt = 0;
     this.child = {};
   }
 }
@@ -25,30 +26,34 @@ class Trie {
       }
       currentNode = currentNode.child[currentChar];
     }
+    currentNode.end = true;
+    currentNode.cnt++;
   }
-
   search(value) {
     let currentNode = this.root;
+    let answer = "";
     for (let i = 0; i < value.length; i++) {
       const currentChar = value[i];
       if (currentNode.child[currentChar]) {
         currentNode = currentNode.child[currentChar];
+        answer += currentChar;
       } else {
-        return null;
+        return answer + currentChar;
       }
     }
-    return currentNode.value;
+    if (currentNode.end) {
+      return answer + (currentNode.cnt + 1);
+    } else return answer;
   }
 }
 
 function solution(nicknames) {
   const trie = new Trie();
   for (const nickname of nicknames) {
-    if (trie.search(nickname)) {
-      console.log(nickname)
-    }
-    trie.insert(nickname)
+    const answer = trie.search(nickname);
+    trie.insert(nickname);
+    console.log(answer);
   }
 }
 
-console.log(solution(input.slice(1)));
+solution(input.slice(1));
