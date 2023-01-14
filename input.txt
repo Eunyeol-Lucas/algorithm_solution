@@ -1,5 +1,6 @@
-4
-2 KIWI BANANA
-2 KIWI APPLE
-2 APPLE APPLE
-3 APPLE BANANA KIWI
+5
+baekjoon
+startlink
+bakejoon
+beakjoon
+baekjoon
