@@ -11,7 +11,6 @@ function solution(N, K, sensors) {
   let answer = 0;
 
   sensors.sort((a, b) => a - b);
-  console.log(sensors)
   for (let i = 0; i < N - 1; i++) {
     arr.push(sensors[i + 1] - sensors[i]);
   }

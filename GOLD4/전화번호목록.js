@@ -2,7 +2,7 @@
  * 유형: 정렬, 트라이
  * 풀이: 전화번호 문자열을 오름차순으로 정렬
  * 한 번호가 다음 번호의 접두어인 경우가 존재하는지 확인
- * 정렬 - 메모리: 33416kb, 시간: 580ms
+ * 정렬 - 메모리: 33988kb, 시간: 496ms
  * 트라이 - 메모리: 130844kb, 시간: 1344ms
  */
 
@@ -17,7 +17,7 @@ function solution(arr) {
   arr.sort((a, b) => a.localeCompare(b));
   // 번호 A가 다른 번호의 접두어인 경우가 존재하면, 번호 A 바로 뒤에 A를 접두어로 가지는 번호가 오는 경우가 항상 존재
   for (let i = 0; i < arr.length; i++) {
-    if (arr[i].slice(0, previousNumberLength) === arr[i - 1]) {
+    if (arr[i].startsWith(arr[i - 1])) {
       answer = "NO";
       break;
     }
