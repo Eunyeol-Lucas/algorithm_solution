@@ -1,8 +1,7 @@
-7
-codeplus
-startlink
-beakjoon
-baek
-baekjoon
-baek
-codingwiki
+6 7
+1
+5
+3
+3
+5
+1
