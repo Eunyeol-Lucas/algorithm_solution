@@ -2,7 +2,6 @@
  * 유형: 정렬, 이분 탐색
  */
 
-
 const filePath = process.platform === "linux" ? "/dev/stdin" : "input.txt";
 const input = require("fs")
   .readFileSync(filePath)
@@ -40,7 +39,6 @@ const [M, N] = input[0].split(" ").map(Number);
 const arr = input.slice(1).map((i) => i.split(" ").map(Number));
 console.log(solution(M, N, arr));
 
-
 function solution2(m, n, universes) {
   let metaVerses = [],
     cnt = 0;
@@ -48,11 +46,10 @@ function solution2(m, n, universes) {
     const planets = univ.split(" ").map(Number);
     const newUniv = [];
     const sortedPlanets = [...planets].sort((a, b) => a - b);
-
     for (let i = 0; i < n; i++) {
       let planet = planets[i];
       let left = 0,
-        right = m - 1,
+        right = n - 1,
         idx;
       while (left <= right) {
         let mid = Math.floor((left + right) / 2);
