@@ -1,6 +1,7 @@
 /**
- * 유형: 이분탐색
+ * 유형: 이분탐색, 투포인터
  * solution 성능: 11820kb	1660ms
+ * solution2 성능: 11656kb, 244ms
  */
 
 const filePath = process.platform === "linux" ? "/dev/stdin" : "input.txt";
@@ -48,7 +49,28 @@ function solution(n, arr) {
   return answer.sort((a, b) => a - b).join(" ");
 }
 
+function solution2(n, arr) {
+  let answer = [];
+  let min = Number.MAX_SAFE_INTEGER;
+  arr.sort((a, b) => a - b);
+  for (let i = 0; i < n - 2; i++) {
+    let left = i + 1;
+    let right = n - 1;
+    while (left < right) {
+      const sum = arr[i] + arr[left] + arr[right];
+      if (Math.abs(sum) < Math.abs(min)) {
+        min = sum;
+        answer = [arr[i], arr[left], arr[right]];
+      }
+      if (sum < 0) left++;
+      else right--;
+    }
+  }
+  return answer.join(" ");
+}
+
 const N = +input[0];
 const arr = input[1].split(" ").map(Number);
 
 console.log(solution(N, arr));
+console.log(solution2(N, arr));
