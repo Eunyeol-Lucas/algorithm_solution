@@ -7,7 +7,7 @@ let input = require("fs").readFileSync(filePath).toString().trim().split("\n");
 const [N, H] = input[0].split(" ").map(Number);
 const arr = input.slice(1);
 
-
+// 61800kb	456ms
 function solution(n, h, arr) {
   let result = [];
   const top = Array.from({ length: H }, () => 0);
@@ -48,6 +48,8 @@ const binarySearch = (left, right, height, arr) => {
   }
   return min === Number.MAX_SAFE_INTEGER ? 0 : N / 2 - min;
 };
+
+// 34312kb	396ms
 function solution2(n, h, stones) {
   let min = Number.MAX_SAFE_INTEGER,
     cnt = 0;
