@@ -6,7 +6,7 @@ function hashStringToInt(s, tableSize) {
   }
 }
 
-class HashTabel {
+class HashTable {
   constructor() {
     this.table = new Array(71);
   }
