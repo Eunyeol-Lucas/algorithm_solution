@@ -1,3 +1,7 @@
+/**
+ * 유형: 다익스트라
+ */
+
 const filePath = process.platform === "linux" ? "/dev/stdin" : "input.txt";
 const input = require("fs")
   .readFileSync(filePath)
@@ -65,44 +69,52 @@ class MinHeap {
 }
 
 function solution(input) {
-  const [n, m] = input[0].split(" ").map(Number);
-  const start = input[1];
+  const [n, m, r] = input[0].split(" ").map(Number);
+  const itemCnts = input[1].split(" ").map(Number);
   const arr = input.slice(2);
-  const graph = Array.from({ length: n + 1 }, () => new Array());
-  const distance = Array.from({ length: n + 1 }, () => Infinity);
 
-  for (let i = 0; i < m; i++) {
+  const graph = Array.from({ length: n + 1 }, () => new Array());
+  const distance = Array.from({ length: n }, () =>
+    Array.from({ length: n + 1 }, () => Infinity)
+  );
+
+  for (let i = 0; i < r; i++) {
     const [a, b, c] = arr[i].split(" ").map(Number);
     graph[a].push([b, c]);
+    graph[b].push([a, c]);
   }
 
-  const dijkstra = (start) => {
+  const dijkstra = (idx, start) => {
     const heapq = new MinHeap();
     heapq.heappush([0, start]);
-    distance[start] = 0;
+    distance[idx][start] = 0;
     while (heapq.size()) {
       let [dist, now] = heapq.heappop();
-      if (distance[now] < dist) continue;
+      if (distance[idx][now] < dist) continue;
 
       for (const x of graph[now]) {
         const cost = dist + x[1];
-        if (cost < distance[x[0]]) {
-          distance[x[0]] = cost;
+        if (cost < distance[idx][x[0]]) {
+          distance[idx][x[0]] = cost;
           heapq.heappush([cost, x[0]]);
         }
       }
     }
   };
-
-  dijkstra(start);
-  let answer = "";
   for (let i = 1; i <= n; i++) {
-    if (distance[i] === Infinity) answer += "INFINITY" + "\n";
-    else answer += distance[i] + "\n";
+    dijkstra(i - 1, i);
+  }
+  let answer = 0;
+  for (let i = 0; i < n; i++) {
+    let tmp = 0;
+    for (let j = 1; j <= n; j++) {
+      if (distance[i][j] <= m) {
+        tmp += itemCnts[j - 1];
+      }
+    }
+    answer = Math.max(answer, tmp);
   }
   return answer;
 }
 
-console.time('다익스트라')
 console.log(solution(input));
-console.timeEnd('다익스트라')
