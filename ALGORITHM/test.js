@@ -20,7 +20,6 @@ class Queue {
       this.front = 0;
       this.rear = 0;
     } else {
-      tmp = this;
       this.front++;
     }
     this.size--;
