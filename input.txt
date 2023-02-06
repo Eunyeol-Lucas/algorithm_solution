@@ -1,11 +1,4 @@
-4
-GEEKS
-FOR
-QUIZ
-GO
-
-1
-RLPM
-PRET
-IAET
-TNZY
+3 3
+###
+#J.
+#.F
