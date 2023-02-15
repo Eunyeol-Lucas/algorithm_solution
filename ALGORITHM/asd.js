@@ -64,10 +64,7 @@ class MinHeap {
       return min;
     }
 
-    while (
-      (curIdx > 1 && this.compare(curIdx, leftIdx)) ||
-      this.compare(curIdx, rightIdx)
-    ) {
+    while (this.compare(curIdx, leftIdx) || this.compare(curIdx, rightIdx)) {
       const minIdx = this.compare(leftIdx, rightIdx) ? rightIdx : leftIdx;
       this.swap(minIdx, curIdx);
       curIdx = minIdx;
@@ -186,7 +183,7 @@ class Heap {
     }
 
     while (
-      (curIdx > 1 && this.heap[leftIdx] < this.heap[curIdx]) ||
+      this.heap[leftIdx] < this.heap[curIdx] ||
       this.heap[rightIdx] < this.heap[curIdx]
     ) {
       const minIdx =
