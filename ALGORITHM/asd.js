@@ -2,6 +2,7 @@ class MinHeap {
   constructor() {
     this.heap = [null];
     this.length = 0;
+    this.type = "";
   }
 
   size() {
@@ -14,10 +15,17 @@ class MinHeap {
 
   compare(a, b) {
     if (!(this.heap[a] && this.heap[b])) return false;
-    for (let i = 0; i < this.length; i++) {
-      if (this.heap[a][i] > this.heap[b][i]) return true;
-      else if (this.heap[a][i] < this.heap[b][i]) return false;
+    if (this.type === "Number" || "String") return this.heap[a] > this.heap[b];
+    else {
+      for (let i = 0; i < this.length; i++) {
+        if (this.heap[a][i] > this.heap[b][i]) return true;
+        else if (this.heap[a][i] < this.heap[b][i]) return false;
+      }
     }
+  }
+
+  setType(value) {
+    this.type = typeof value;
   }
 
   setElementLength(value) {
@@ -27,6 +35,7 @@ class MinHeap {
 
   push(value) {
     if (!this.length) {
+      this.setType(value);
       this.setElementLength(value);
     }
     this.heap.push(value);

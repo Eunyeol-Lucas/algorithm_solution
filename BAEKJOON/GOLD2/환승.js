@@ -38,6 +38,15 @@ function solution(n, k, m, hyperTubes) {
   if (n === 1) return 1;
 
   // 각 역이 몇 번째 하이퍼 튜브를 지나가는 지 저장하기 위한 배열
+
+  /*
+15 8 4
+11 12 8 14 13 6 10 7 - 1 
+1 5 8 12 13 6 2 4  - 2
+10 15 4 5 9 8 14 12 - 3
+11 12 14 3 5 6 1 13 - 4 
+*/
+
   const stationList = Array.from({ length: n + 1 }, () => new Array());
   const hyperTubeList = Array.from({ length: m + 1 }, () => new Array());
   for (let i = 0; i < m; i++) {
