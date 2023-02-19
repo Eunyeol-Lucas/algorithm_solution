@@ -43,6 +43,7 @@ function solution(n, g, k, foods) {
   while (left <= right) {
     const mid = ((left + right) / 2) >> 0;
     const germs = getGermCount(mid);
+    console.log(mid, germs, left, right);
     if (germs <= g) {
       answer = mid;
       left = mid + 1;
