@@ -73,13 +73,7 @@ function solution(n, populations, bridge) {
   let answer = Infinity;
 
   for (let i = 1; i <= Math.floor(n / 2); i++) {
-    console.log(i);
-    const combins = getCombination(
-      Array(n)
-        .fill(0)
-        .map((_, i) => i),
-      i
-    );
+    const combins = getCombination([...Array(n).keys()], i);
 
     for (const combi of combins) {
       const [sum1, v1] = bfs(combi, bridge, populations);
